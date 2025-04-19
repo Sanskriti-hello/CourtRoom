@@ -26,9 +26,9 @@ class JudgeAgent:
         self.system_prompt = system_prompt.strip()
         self.description = description.strip()   
         self.client = InferenceClient(
-            model,
-            token="hf_EhWyVApfuVivnwnrfQDhaRbPagYcEFSDf"          # make sure this env‑var is set
-        )
+                        model="microsoft/Phi-3-mini-4k-instruct",
+                        token="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"
+                    ) # make sure this env‑var is set
         self.tokenizer = AutoTokenizer.from_pretrained(model)
         self.db = db
         self.logger = logging.getLogger(name)

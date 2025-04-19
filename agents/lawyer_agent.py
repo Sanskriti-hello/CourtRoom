@@ -32,9 +32,9 @@ class LawyerAgent:
         self.system_prompt = system_prompt.strip()
         self.history: List[Dict[str, str]] = []      # list of {"role": ..., "content": ...}
         self.client = InferenceClient(
-            model,
-            token="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"
-          ) # make sure this env‑var is set
+                        model="microsoft/Phi-3-mini-4k-instruct",
+                        token="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"
+                    ) # make sure this env‑var is set
         self.tokenizer = AutoTokenizer.from_pretrained(model) 
         self.db = db        
         
