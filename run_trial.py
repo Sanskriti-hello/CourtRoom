@@ -1,4 +1,7 @@
 # run_trial.py
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agents.judge_agent import JudgeAgent
 from agents.lawyer_agent import LawyerAgent
