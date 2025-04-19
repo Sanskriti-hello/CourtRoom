@@ -33,7 +33,8 @@ class LawyerAgent:
         self.client = InferenceClient(
             model,
             token="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"
-          )  # make sure this env‑var is set
+          ) # make sure this env‑var is set
+        self.tokenizer = AutoTokenizer.from_pretrained(model) 
         self.db = db        
         
 

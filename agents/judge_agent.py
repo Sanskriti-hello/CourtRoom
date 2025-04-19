@@ -28,6 +28,7 @@ class JudgeAgent:
             model,
             token="hf_EhWyVApfuVivnwnrfQDhaRbPagYcEFSDf"          # make sure this env‑var is set
         )
+        self.tokenizer = AutoTokenizer.from_pretrained(model)
         self.db = db
         self.logger = logging.getLogger(name)
         self.log_think = True
