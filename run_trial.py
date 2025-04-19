@@ -1,5 +1,6 @@
 # run_trial.py
-
+import sys
+import os
 
 import pandas as pd
 import json
@@ -11,10 +12,11 @@ from typing import List, Dict, Any
 from huggingface_hub import InferenceClient
 import json
 import logging
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from .agents.judge_agent import JudgeAgent
-from .agents.lawyer_agent import LawyerAgent
-from .database.courtroom_db import CourtroomDB
+from agents.judge_agent import JudgeAgent
+from agents.lawyer_agent import LawyerAgent
+from database.courtroom_db import CourtroomDB
 
 # System prompts for each agent
 DEFENSE_SYSTEM = """

@@ -2,10 +2,15 @@
 
 import streamlit as st
 import pandas as pd
+import sys
+import os
 
-from .agents.judge_agent import JudgeAgent
-from .agents.lawyer_agent import LawyerAgent
-from .database.courtroom_db import CourtroomDB
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from agents.judge_agent import JudgeAgent
+from agents.lawyer_agent import LawyerAgent
+from database.courtroom_db import CourtroomDB
+from run_trial import init_agents, run_trial
+
 
 # Initialize the database and agents
 db = CourtroomDB()
