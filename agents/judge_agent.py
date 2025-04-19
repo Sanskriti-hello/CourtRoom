@@ -10,6 +10,7 @@ from typing import List, Dict, Any
 from huggingface_hub import InferenceClient
 import json
 import logging
+from transformers import AutoTokenizer
 
 class JudgeAgent:
 
@@ -42,7 +43,17 @@ class JudgeAgent:
 
     def _hf_generate(self, instruction: str, prompt: str) -> str:
         full_prompt = f"<|system|>\n{instruction}\n<|user|>\n{prompt}\n<|assistant|>\n"
-        return self.client.text_generation(full_prompt, max_new_tokens=512, temperature=0.7).strip()
+
+        max_total_tokens = 4096
+        max_new_tokens = 512
+
+        input_ids = self.tokenizer(full_prompt, return_tensors="pt")["input_ids"][0]
+        if len(input_ids) + max_new_tokens > max_total_tokens:
+            max_prompt_tokens = max_total_tokens - max_new_tokens
+            input_ids = input_ids[-max_prompt_tokens:]  # keep only last tokens
+            full_prompt = self.tokenizer.decode(input_ids, skip_special_tokens=True)
+
+        return self.client.text_generation(full_prompt, max_new_tokens=max_new_tokens, temperature=0.7).strip()
 
     def _parse_json(self, response: str) -> Dict[str, Any]:
         try:

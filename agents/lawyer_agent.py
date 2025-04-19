@@ -10,6 +10,7 @@ from typing import List, Dict, Any
 from huggingface_hub import InferenceClient
 import json
 import logging
+from transformers import AutoTokenizer
 
 #the agents are gonna follow 2 approaches, the lawyer agents follow react and judge follows reflection
 #firstly coming to the lawyer agent,
@@ -176,9 +177,18 @@ class LawyerAgent:
 
     def _hf_generate(self, instruction: str, prompt: str) -> str:
         full_prompt = f"<|system|>\n{instruction}\n<|user|>\n{prompt}\n<|assistant|>\n"
+        max_total_tokens=4096
+        max_new_tokens=512
+
+        tokens = self.tokenizer(full_prompt, return_tensors="pt")["input_ids"][0]
+        if len(tokens) + max_new_tokens > max_total_tokens:
+            max_prompt_tokens = max_total_tokens - max_new_tokens
+            tokens = tokens[-max_prompt_tokens:]  # keep only last tokens
+            full_prompt = self.tokenizer.decode(tokens, skip_special_tokens=True)
+
         return self.client.text_generation(
             full_prompt,
-            max_new_tokens=512,
+            max_new_tokens=max_new_tokens,
             temperature=0.7,
             do_sample=True,
             stream=False
