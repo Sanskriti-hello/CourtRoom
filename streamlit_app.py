@@ -12,9 +12,6 @@ from database.courtroom_db import CourtroomDB
 from run_trial import init_agents, run_trial
 
 
-# Initialize the database and agents
-db = CourtroomDB()
-
 # Streamlit app title
 st.title("Courtroom Trial Simulator")
 
@@ -24,6 +21,9 @@ case_details = st.text_area("Enter the details of the case (long paragraph)", he
 
 st.header("Step 2: Upload Past Case Data (CSV)")
 uploaded_file = st.file_uploader("Choose a CSV file with past cases", type=["csv"])
+
+past_cases_df = pd.DataFrame() 
+past_cases = ""
 
 if uploaded_file is not None:
     past_cases_df = pd.read_csv(uploaded_file)
