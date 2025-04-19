@@ -132,15 +132,16 @@ class JudgeAgent:
     def _reflect_on_case(self, case_content: str, history_context: str) -> Dict[str, Any]:
         summary = self._generate_case_summary(case_content, history_context)
         entry = {
-            "id": str(uuid.uuid4()),
-            "content": summary["content"],
-            "metadata": {
-                "caseType": summary["case_type"],
-                "keywords": summary["keywords"],
-                "quick_reaction_points": summary["quick_reaction_points"],
-                "response_directions": summary["response_directions"],
-            }
-        }
+                    "id": str(uuid.uuid4()),
+                    "content": summary.get("content", "Default content if missing"),
+                    "metadata": {
+                        "caseType": summary.get("case_type", "Unknown case type"),
+                        "keywords": summary.get("keywords", []),
+                        "quick_reaction_points": summary.get("quick_reaction_points", []),
+                        "response_directions": summary.get("response_directions", [])
+                    }
+                }
+
         self.add_to_case(entry["id"], entry["content"], entry["metadata"])
         return entry
 
