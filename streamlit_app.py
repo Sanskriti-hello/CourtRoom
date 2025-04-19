@@ -39,17 +39,24 @@ rounds = st.slider("Select number of rounds for arguments", min_value=1, max_val
 if st.button("Start Trial"):
     if not case_details:
         st.error("Please enter the case details before starting the trial.")
-    elif not past_cases:
-        st.warning("No past case data uploaded. The trial will proceed without it.")
     else:
+        # Use fallback if no valid file uploaded
+        if uploaded_file is None or "text" not in past_cases_df.columns:
+            st.warning("No valid past case data uploaded. The trial will proceed without it.")
+            db = CourtroomDB(pd.DataFrame())  # fallback: empty DataFrame
+            past_cases = ""
+        else:
+            db = CourtroomDB(past_cases_df)
+
         # Initialize agents
         defense, prosecution, defendant, plaintiff, judge = init_agents(db)
 
         # Run the trial
         result = run_trial(plaintiff, prosecution, defense, defendant, judge, case_details, past_cases, rounds)
 
-        # Display the trial results
+        # Display results
         st.header("Trial Results")
+
         st.subheader("Case Background")
         st.write(result["case"])
 
