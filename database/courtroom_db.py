@@ -1,5 +1,14 @@
 import pandas as pd
-from typing import Dict, Any
+
+import json
+import re
+import uuid
+from __future__ import annotations
+import os
+from typing import List, Dict, Any
+from huggingface_hub import InferenceClient
+import json
+import logging
 
 class CourtroomDB:
     def __init__(self, dataframe: pd.DataFrame):

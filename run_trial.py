@@ -1,11 +1,20 @@
 # run_trial.py
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from agents.judge_agent import JudgeAgent
-from agents.lawyer_agent import LawyerAgent
-from database.courtroom_db import CourtroomDB
+
+import pandas as pd
+import json
+import re
+import uuid
+from __future__ import annotations
+
+from typing import List, Dict, Any
+from huggingface_hub import InferenceClient
+import json
+import logging
+
+from .agents.judge_agent import JudgeAgent
+from .agents.lawyer_agent import LawyerAgent
+from .database.courtroom_db import CourtroomDB
 
 # System prompts for each agent
 DEFENSE_SYSTEM = """
