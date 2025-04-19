@@ -11,6 +11,7 @@ from huggingface_hub import InferenceClient
 import json
 import logging
 from transformers import AutoTokenizer
+import torch
 
 #the agents are gonna follow 2 approaches, the lawyer agents follow react and judge follows reflection
 #firstly coming to the lawyer agent,

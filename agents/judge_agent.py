@@ -11,6 +11,7 @@ from huggingface_hub import InferenceClient
 import json
 import logging
 from transformers import AutoTokenizer
+import torch
 
 class JudgeAgent:
 
