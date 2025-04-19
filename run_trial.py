@@ -1,4 +1,6 @@
-# run_trial.py
+from __future__ import annotations
+
+
 import sys
 import os
 
@@ -6,7 +8,6 @@ import pandas as pd
 import json
 import re
 import uuid
-from __future__ import annotations
 
 from typing import List, Dict, Any
 from huggingface_hub import InferenceClient

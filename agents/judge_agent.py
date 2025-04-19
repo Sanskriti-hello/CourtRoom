@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import pandas as pd
 import json
 import re
 import uuid
-from __future__ import annotations
+
 import os
 from typing import List, Dict, Any
 from huggingface_hub import InferenceClient
