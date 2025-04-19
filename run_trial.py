@@ -146,9 +146,8 @@ def run_trial(plaintiff, prosecution, defense, defendant, judge, case_background
         log(role, agent.name, response)
 
     print("==== Verdict ====\n")
-    trimmed_history = judge.trim_history(history, max_tokens=2500)
-    reflections = judge.reflect(trimmed_history)
-    verdict = judge.deliberate(reflections, trimmed_history)
+    reflections = judge.reflect(history)
+    verdict = judge.deliberate(reflections, history)
     log("judge", judge.name, verdict)
 
     return {
