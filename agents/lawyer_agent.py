@@ -31,7 +31,7 @@ class LawyerAgent:
         self.history: List[Dict[str, str]] = []      # list of {"role": ..., "content": ...}
         self.client = InferenceClient(
             model,
-            token=os.getenv("HF_API_TOKEN") 
+            token="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"
           )  # make sure this env‑var is set
         self.db = db        
         

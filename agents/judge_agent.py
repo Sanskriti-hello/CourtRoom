@@ -25,7 +25,7 @@ class JudgeAgent:
         self.description = description.strip()   
         self.client = InferenceClient(
             model,
-            token=os.getenv("HF_API_TOKEN")           # make sure this env‑var is set
+            token="hf_EhWyVApfuVivnwnrfQDhaRbPagYcEFSDf"          # make sure this env‑var is set
         )
         self.db = db
         self.logger = logging.getLogger(name)
