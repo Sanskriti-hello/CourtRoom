@@ -33,7 +33,7 @@ class LawyerAgent:
         self.history: List[Dict[str, str]] = []      # list of {"role": ..., "content": ...}
         self.client = InferenceClient(
                         model="microsoft/Phi-3-mini-4k-instruct",
-                        token="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"
+                        token="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"
                     ) # make sure this env‑var is set
         self.tokenizer = AutoTokenizer.from_pretrained(model) 
         self.db = db        
