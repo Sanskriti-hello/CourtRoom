@@ -15,6 +15,9 @@ CourtRoom is a Python-based application designed to simulate courtroom trials, p
 - ⚡ **FAISS or Similar Search DB**  
   Fast and relevant case retrieval from uploaded database for context-aware generation.
 
+  https://courtroom-o9uubxkeuyeraqfp3exnpt.streamlit.app/
+  
+
   ## 📂 Project Structure
 
   CourtRoom/
